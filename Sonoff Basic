@@ -1,0 +1,37 @@
+esphome:
+  name: (Euer Sonoff Name)
+  platform: ESP8266
+  board: esp8285
+
+wifi:
+  ssid: (Euer W-Lan Netzwerk)
+  password: (Euer W-Lan Password)
+
+api: (Eure Homeassistant API)
+
+logger:(Eure Homeassistant Logger)
+
+ota:(Euer Homeassistant OTA Key)
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: "Euer Sonoff Schalter Name"
+    on_press:
+      - switch.toggle: relay
+
+switch:
+  - platform: gpio
+    name: "Euer Sonoff Relay Name"
+    pin: GPIO12
+    id: relay
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: yes
